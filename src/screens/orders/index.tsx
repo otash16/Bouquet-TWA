@@ -3,12 +3,12 @@ import PageHeader from '@/components/PageHeader';
 
 export default function OrdersPage() {
   return (
-    <div className="animate-fade-in pb-24">
+    <div style={{ paddingBottom: 100 }}>
       <PageHeader title="Buyurtmalar" />
-      <div className="flex flex-col items-center justify-center py-24 px-4">
-        <ClipboardList className="w-16 h-16 mb-4" style={{ color: 'var(--text-muted)' }} />
-        <h2 className="text-lg font-semibold mb-1">Buyurtmalar yo'q</h2>
-        <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 16px' }}>
+        <ClipboardList style={{ width: 56, height: 56, color: '#6b7280', marginBottom: 16 }} />
+        <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 4 }}>Buyurtmalar yo'q</h2>
+        <p style={{ fontSize: 14, color: '#9ca3b0' }}>
           Hozircha hech qanday buyurtma bermagansiz
         </p>
       </div>

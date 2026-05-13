@@ -1,6 +1,5 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, ShoppingCart, ClipboardList, User } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 const tabs = [
   { path: '/home', label: 'Asosiy', icon: Home },
@@ -14,25 +13,36 @@ export default function BottomTabBar() {
   const location = useLocation();
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 z-50">
-      <nav className="flex items-center justify-around rounded-2xl px-2 py-2" style={{ backgroundColor: 'var(--bg-tab-bar)' }}>
+    <div style={{ position: 'fixed', bottom: 16, left: 16, right: 16, zIndex: 50 }}>
+      <nav style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        borderRadius: 20,
+        padding: '6px 8px',
+        backgroundColor: '#2a3040',
+        boxShadow: '0 -2px 20px rgba(0,0,0,0.3)',
+      }}>
         {tabs.map(tab => {
           const isActive = location.pathname.startsWith(tab.path);
           return (
             <button
               key={tab.path}
               onClick={() => navigate(tab.path)}
-              className={cn(
-                'flex flex-col items-center gap-0.5 px-4 py-2 rounded-xl transition-all duration-200 cursor-pointer',
-                isActive ? 'bg-[var(--bg-header)]' : ''
-              )}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 2,
+                padding: '8px 16px',
+                borderRadius: 14,
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: isActive ? '#1e3a3a' : 'transparent',
+              }}
             >
-              <tab.icon
-                className={cn('w-5 h-5 transition-colors', isActive ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]')}
-              />
-              <span
-                className={cn('text-[10px] font-medium transition-colors', isActive ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]')}
-              >
+              <tab.icon style={{ width: 20, height: 20, color: isActive ? '#c9a84c' : '#9ca3b0' }} />
+              <span style={{ fontSize: 10, fontWeight: 500, color: isActive ? '#c9a84c' : '#9ca3b0' }}>
                 {tab.label}
               </span>
             </button>

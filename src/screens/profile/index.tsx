@@ -20,59 +20,69 @@ export default function ProfilePage() {
         username: tgUser.username ?? null,
       });
     } else {
-      // Dev mode
       setUser({ firstName: 'Dev', lastName: 'User', username: 'dev_user' });
     }
   }, []);
 
   const menuItems = [
-    { icon: ClipboardList, label: 'Buyurtmalar tarixi', action: () => {} },
-    { icon: MessageCircle, label: "Biz bilan bog'lanish", action: () => {} },
-    { icon: Settings, label: 'Sozlamalar', action: () => {} },
+    { icon: ClipboardList, label: 'Buyurtmalar tarixi' },
+    { icon: MessageCircle, label: "Biz bilan bog'lanish" },
+    { icon: Settings, label: 'Sozlamalar' },
   ];
 
+  const cardStyle = {
+    borderRadius: 14,
+    padding: 16,
+    backgroundColor: '#2a3040',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 12,
+    cursor: 'pointer',
+    border: 'none',
+    width: '100%',
+    color: '#fff',
+    textAlign: 'left' as const,
+  };
+
   return (
-    <div className="animate-fade-in pb-24">
+    <div style={{ paddingBottom: 100 }}>
       <PageHeader title="Profil" />
 
-      <div className="px-4 mt-4 space-y-3">
+      <div style={{ padding: '16px 16px', display: 'flex', flexDirection: 'column', gap: 10 }}>
         {/* User card */}
-        <div className="rounded-xl p-4 flex items-center gap-3" style={{ backgroundColor: 'var(--bg-card)' }}>
-          <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-            <User className="w-6 h-6" style={{ color: 'var(--text-muted)' }} />
+        <div style={cardStyle}>
+          <div style={{
+            width: 48, height: 48, borderRadius: '50%', backgroundColor: '#232838',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <User style={{ width: 24, height: 24, color: '#6b7280' }} />
           </div>
           <div>
-            <p className="font-semibold">
+            <p style={{ fontWeight: 600, fontSize: 15 }}>
               {user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || 'Foydalanuvchi' : '...'}
             </p>
             {user?.username && (
-              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>@{user.username}</p>
+              <p style={{ fontSize: 13, color: '#9ca3b0', marginTop: 2 }}>@{user.username}</p>
             )}
           </div>
         </div>
 
         {/* Menu items */}
         {menuItems.map((item, i) => (
-          <button
-            key={i}
-            onClick={item.action}
-            className="w-full rounded-xl p-4 flex items-center gap-3 cursor-pointer transition-colors"
-            style={{ backgroundColor: 'var(--bg-card)' }}
-          >
-            <item.icon className="w-5 h-5" style={{ color: 'var(--text-secondary)' }} />
-            <span className="text-sm flex-1 text-left">{item.label}</span>
-            <span style={{ color: 'var(--text-muted)' }}>›</span>
+          <button key={i} style={cardStyle}>
+            <item.icon style={{ width: 20, height: 20, color: '#9ca3b0', flexShrink: 0 }} />
+            <span style={{ fontSize: 14, flex: 1 }}>{item.label}</span>
+            <span style={{ color: '#6b7280', fontSize: 18 }}>›</span>
           </button>
         ))}
 
         {/* Logout */}
         <button
           onClick={() => window.Telegram?.WebApp?.close()}
-          className="w-full rounded-xl p-4 flex items-center gap-3 cursor-pointer"
-          style={{ backgroundColor: 'var(--bg-card)' }}
+          style={{ ...cardStyle, marginTop: 4 }}
         >
-          <LogOut className="w-5 h-5" style={{ color: 'var(--danger)' }} />
-          <span className="text-sm" style={{ color: 'var(--danger)' }}>Chiqish</span>
+          <LogOut style={{ width: 20, height: 20, color: '#ef4444', flexShrink: 0 }} />
+          <span style={{ fontSize: 14, color: '#ef4444' }}>Chiqish</span>
         </button>
       </div>
     </div>

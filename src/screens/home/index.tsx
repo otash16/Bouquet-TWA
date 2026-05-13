@@ -41,44 +41,62 @@ export default function HomePage() {
   );
 
   return (
-    <div className="animate-fade-in pb-24">
+    <div style={{ paddingBottom: 100 }}>
       {/* Header */}
-      <div className="px-4 pt-6 pb-4" style={{ backgroundColor: 'var(--bg-header)' }}>
-        <div className="flex justify-center mb-4">
-          <div className="flex items-center gap-2">
-            <Flower2 className="w-6 h-6" style={{ color: 'var(--accent)' }} />
-            <span className="text-lg font-bold" style={{ color: 'var(--accent)' }}>Bouquet</span>
+      <div style={{ padding: '24px 16px 16px', backgroundColor: '#1e3a3a' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <Flower2 style={{ width: 24, height: 24, color: '#c9a84c' }} />
+            <span style={{ fontSize: 20, fontWeight: 700, color: '#c9a84c' }}>Bouquet</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5 mb-4" style={{ color: 'var(--text-secondary)' }}>
-          <MapPin className="w-4 h-4" />
-          <span className="text-sm">Toshkent</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#9ca3b0', marginBottom: 12 }}>
+          <MapPin style={{ width: 14, height: 14 }} />
+          <span style={{ fontSize: 13 }}>Toshkent</span>
         </div>
 
         {/* Search */}
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: 'var(--text-muted)' }} />
+        <div style={{ position: 'relative' }}>
+          <Search style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, color: '#6b7280' }} />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Qidirish..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl text-sm text-white placeholder-[var(--text-muted)] outline-none"
-            style={{ backgroundColor: 'var(--bg-card)' }}
+            style={{
+              width: '100%',
+              paddingLeft: 40,
+              paddingRight: 16,
+              paddingTop: 10,
+              paddingBottom: 10,
+              borderRadius: 14,
+              fontSize: 14,
+              color: '#fff',
+              backgroundColor: '#2a3040',
+              border: 'none',
+              outline: 'none',
+            }}
           />
         </div>
       </div>
 
-      {/* Categories */}
-      <div className="px-4 pt-4">
-        <h2 className="text-base font-semibold mb-3">Do'konlar</h2>
-        <div className="flex gap-2 overflow-x-auto pb-3 -mx-4 px-4" style={{ scrollbarWidth: 'none' }}>
+      {/* Section title + Categories */}
+      <div style={{ padding: '16px 16px 0' }}>
+        <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>Do'konlar</h2>
+
+        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 12, WebkitOverflowScrolling: 'touch' }}>
           <button
             onClick={() => setActiveCategory(null)}
-            className="px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer"
             style={{
-              backgroundColor: !activeCategory ? 'var(--accent)' : 'var(--bg-card)',
-              color: !activeCategory ? '#000' : 'var(--text-secondary)',
+              padding: '7px 16px',
+              borderRadius: 20,
+              fontSize: 12,
+              fontWeight: 500,
+              whiteSpace: 'nowrap',
+              border: 'none',
+              cursor: 'pointer',
+              backgroundColor: !activeCategory ? '#c9a84c' : '#2a3040',
+              color: !activeCategory ? '#000' : '#9ca3b0',
             }}
           >
             Hammasi
@@ -87,10 +105,16 @@ export default function HomePage() {
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
-              className="px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors cursor-pointer"
               style={{
-                backgroundColor: activeCategory === cat.id ? 'var(--accent)' : 'var(--bg-card)',
-                color: activeCategory === cat.id ? '#000' : 'var(--text-secondary)',
+                padding: '7px 16px',
+                borderRadius: 20,
+                fontSize: 12,
+                fontWeight: 500,
+                whiteSpace: 'nowrap',
+                border: 'none',
+                cursor: 'pointer',
+                backgroundColor: activeCategory === cat.id ? '#c9a84c' : '#2a3040',
+                color: activeCategory === cat.id ? '#000' : '#9ca3b0',
               }}
             >
               {cat.name}
@@ -100,38 +124,42 @@ export default function HomePage() {
       </div>
 
       {/* Shop list */}
-      <div className="px-4 space-y-4 mt-2">
+      <div style={{ padding: '8px 16px', display: 'flex', flexDirection: 'column', gap: 16 }}>
         {loading ? (
-          <div className="text-center py-12" style={{ color: 'var(--text-muted)' }}>Yuklanmoqda...</div>
+          <div style={{ textAlign: 'center', padding: '48px 0', color: '#6b7280' }}>Yuklanmoqda...</div>
         ) : filteredShops.length === 0 ? (
-          <div className="text-center py-12">
-            <Flower2 className="w-12 h-12 mx-auto mb-3" style={{ color: 'var(--text-muted)' }} />
-            <p style={{ color: 'var(--text-muted)' }}>Do'konlar topilmadi</p>
+          <div style={{ textAlign: 'center', padding: '48px 0' }}>
+            <Flower2 style={{ width: 48, height: 48, margin: '0 auto 12px', color: '#6b7280' }} />
+            <p style={{ color: '#6b7280' }}>Do'konlar topilmadi</p>
           </div>
         ) : (
           filteredShops.map(shop => (
             <div
               key={shop.id}
               onClick={() => navigate(`/shop/${shop.slug}`)}
-              className="rounded-2xl overflow-hidden cursor-pointer active:scale-[0.98] transition-transform"
-              style={{ backgroundColor: 'var(--bg-card)' }}
+              style={{
+                borderRadius: 16,
+                overflow: 'hidden',
+                backgroundColor: '#2a3040',
+                cursor: 'pointer',
+              }}
             >
-              <div className="h-40 relative">
+              <div style={{ height: 160, position: 'relative' }}>
                 {shop.coverImage || shop.logo ? (
                   <img
                     src={shop.coverImage || shop.logo || ''}
                     alt={shop.name}
-                    className="w-full h-full object-cover"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center" style={{ backgroundColor: 'var(--bg-secondary)' }}>
-                    <Flower2 className="w-12 h-12" style={{ color: 'var(--text-muted)' }} />
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#232838' }}>
+                    <Flower2 style={{ width: 48, height: 48, color: '#6b7280' }} />
                   </div>
                 )}
               </div>
-              <div className="p-3">
-                <h3 className="font-semibold text-sm">{shop.name}</h3>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--text-secondary)' }}>
+              <div style={{ padding: 12 }}>
+                <h3 style={{ fontSize: 15, fontWeight: 600 }}>{shop.name}</h3>
+                <p style={{ fontSize: 12, color: '#9ca3b0', marginTop: 4 }}>
                   {shop.flowerCount} ta gul · {shop.description || "Gul do'koni"}
                 </p>
               </div>

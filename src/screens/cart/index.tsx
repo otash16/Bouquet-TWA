@@ -6,18 +6,26 @@ export default function CartPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="animate-fade-in pb-24">
+    <div style={{ paddingBottom: 100 }}>
       <PageHeader title="Savatcha" />
-      <div className="flex flex-col items-center justify-center py-24 px-4">
-        <ShoppingCart className="w-16 h-16 mb-4" style={{ color: 'var(--text-muted)' }} />
-        <h2 className="text-lg font-semibold mb-1">Savatcha bo'sh</h2>
-        <p className="text-sm text-center mb-6" style={{ color: 'var(--text-secondary)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '80px 16px' }}>
+        <ShoppingCart style={{ width: 56, height: 56, color: '#6b7280', marginBottom: 16 }} />
+        <h2 style={{ fontSize: 18, fontWeight: 600, marginBottom: 4 }}>Savatcha bo'sh</h2>
+        <p style={{ fontSize: 14, color: '#9ca3b0', textAlign: 'center', marginBottom: 24 }}>
           Gul qo'shish uchun do'konlarni ko'ring
         </p>
         <button
           onClick={() => navigate('/home')}
-          className="px-6 py-3 rounded-xl text-sm font-semibold transition-colors cursor-pointer"
-          style={{ backgroundColor: 'var(--accent)', color: '#000' }}
+          style={{
+            padding: '12px 24px',
+            borderRadius: 14,
+            fontSize: 14,
+            fontWeight: 600,
+            border: 'none',
+            cursor: 'pointer',
+            backgroundColor: '#c9a84c',
+            color: '#000',
+          }}
         >
           Bosh sahifaga o'tish
         </button>

@@ -4,8 +4,8 @@ interface Props {
 
 export default function PageHeader({ title }: Props) {
   return (
-    <div className="px-4 pt-6 pb-4 text-center" style={{ backgroundColor: 'var(--bg-header)' }}>
-      <h1 className="text-base font-medium" style={{ color: 'var(--accent)' }}>{title}</h1>
+    <div style={{ padding: '24px 16px 16px', textAlign: 'center', backgroundColor: '#1e3a3a' }}>
+      <h1 style={{ fontSize: 16, fontWeight: 500, color: '#c9a84c' }}>{title}</h1>
     </div>
   );
 }
