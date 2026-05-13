@@ -42,8 +42,18 @@ input, select, textarea {
   max-width: 480px;
   margin: 0 auto;
   width: 100%;
-  padding-top: var(--tg-safe-area-inset-top, 0px);
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
+}
+
+.safe-area-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
+  z-index: 999;
+  pointer-events: none;
+  transition: background-color 0.3s;
 }
 
 @keyframes fade-in {
