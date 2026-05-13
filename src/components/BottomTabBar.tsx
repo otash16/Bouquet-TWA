@@ -13,7 +13,7 @@ export default function BottomTabBar() {
   const { pathname } = useLocation();
 
   return (
-    <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 480, zIndex: 50, background: '#fff', borderTop: '1px solid #E5E5EA', paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
+    <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 50, background: '#fff', borderTop: '1px solid #E5E5EA', paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', paddingTop: 8, paddingBottom: 6 }}>
         {tabs.map(tab => {
           const active = pathname.startsWith(tab.path);
