@@ -9,15 +9,20 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #F2F2F7;
+  background: #000;
   color: #000;
 }
 
 input, select, textarea { font-size: 16px !important; }
 
 #root {
+  max-width: 480px;
+  margin: 0 auto;
   width: 100%;
   min-height: 100dvh;
+  background: #F2F2F7;
+  border-radius: 12px;
+  overflow: hidden;
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
 }
 
@@ -27,9 +32,22 @@ input, select, textarea { font-size: 16px !important; }
   left: 0;
   right: 0;
   height: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
-  background: #fff;
+  background: #000;
   z-index: 999;
   pointer-events: none;
+}
+
+@media (max-width: 480px) {
+  #root {
+    border-radius: 0;
+    max-width: 100%;
+  }
+  body {
+    background: #F2F2F7;
+  }
+  .safe-area-bg {
+    background: #fff;
+  }
 }
 
 @keyframes fadeIn {

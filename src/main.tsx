@@ -15,9 +15,9 @@ if (tg) {
     tg.requestFullscreen?.();
   }
   // @ts-expect-error
-  if (tg.setHeaderColor) tg.setHeaderColor('#ffffff');
+  if (tg.setHeaderColor) tg.setHeaderColor('#000000');
   // @ts-expect-error
-  if (tg.setBackgroundColor) tg.setBackgroundColor('#F2F2F7');
+  if (tg.setBackgroundColor) tg.setBackgroundColor('#000000');
 }
 
 createRoot(document.getElementById('root')!).render(
