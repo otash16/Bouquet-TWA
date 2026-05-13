@@ -16,9 +16,9 @@ if (tg) {
 
   // Telegram header rangini sozlash
   // @ts-expect-error — setHeaderColor mavjud
-  if (tg.setHeaderColor) tg.setHeaderColor('#000000');
+  if (tg.setHeaderColor) tg.setHeaderColor('#191d2b');
   // @ts-expect-error — setBackgroundColor mavjud
-  if (tg.setBackgroundColor) tg.setBackgroundColor('#000000');
+  if (tg.setBackgroundColor) tg.setBackgroundColor('#191d2b');
 }
 
 createRoot(document.getElementById('root')!).render(
