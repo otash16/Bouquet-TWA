@@ -29,15 +29,17 @@ export default function HomePage() {
   return (
     <div className="page-enter" style={{ paddingBottom: 80 }}>
       {/* Header */}
-      <div style={{ padding: '20px 20px 24px', background: '#1a1a1a', borderRadius: '0 0 28px 28px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20 }}>
+      <div style={{ padding: '20px 20px 20px', background: '#1a1a1a', borderRadius: '0 0 28px 28px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Flower2 style={{ width: 22, height: 22, color: '#8b5cf6' }} />
           </div>
           <span style={{ fontSize: 22, fontWeight: 700 }}>Bouquet</span>
         </div>
+      </div>
 
-        {/* Search */}
+      {/* Search */}
+      <div style={{ padding: '16px 20px 0' }}>
         <div style={{ position: 'relative' }}>
           <Search style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', width: 18, height: 18, color: '#555' }} />
           <input
