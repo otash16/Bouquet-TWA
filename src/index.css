@@ -26,28 +26,9 @@ input, select, textarea { font-size: 16px !important; }
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
 }
 
-.safe-area-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
-  background: #ffffff;
-  z-index: 999;
-  pointer-events: none;
-}
-
 @media (max-width: 480px) {
-  #root {
-    border-radius: 0;
-    max-width: 100%;
-  }
-  body {
-    background: #F2F2F7;
-  }
-  .safe-area-bg {
-    background: #fff;
-  }
+  body { background: #F2F2F7; }
+  #root { border-radius: 0; max-width: 100%; }
 }
 
 @keyframes fadeIn {

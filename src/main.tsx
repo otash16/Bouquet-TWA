@@ -14,10 +14,11 @@ if (tg) {
     // @ts-expect-error
     tg.requestFullscreen?.();
   }
+  const isMobileDevice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   // @ts-expect-error
-  if (tg.setHeaderColor) tg.setHeaderColor('#ffffff');
+  if (tg.setHeaderColor) tg.setHeaderColor(isMobileDevice ? '#ffffff' : '#000000');
   // @ts-expect-error
-  if (tg.setBackgroundColor) tg.setBackgroundColor('#F2F2F7');
+  if (tg.setBackgroundColor) tg.setBackgroundColor(isMobileDevice ? '#F2F2F7' : '#000000');
 }
 
 createRoot(document.getElementById('root')!).render(

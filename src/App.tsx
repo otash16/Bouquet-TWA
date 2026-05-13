@@ -46,8 +46,7 @@ export default function App() {
   );
 
   return (
-    <div style={{ backgroundColor: '#F2F2F7', minHeight: '100vh' }}>
-      <div className="safe-area-bg" />
+    <div style={{ minHeight: '100vh' }}>
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/shop/:slug" element={<ShopPage />} />
