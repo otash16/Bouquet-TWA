@@ -10,45 +10,25 @@ const tabs = [
 
 export default function BottomTabBar() {
   const navigate = useNavigate();
-  const location = useLocation();
+  const { pathname } = useLocation();
 
   return (
-    <div style={{ position: 'fixed', bottom: 16, left: '50%', transform: 'translateX(-50%)', width: 'calc(100% - 32px)', maxWidth: 448, zIndex: 50 }}>
-      <nav style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        borderRadius: 20,
-        padding: '6px 8px',
-        backgroundColor: '#2a3040',
-        boxShadow: '0 -2px 20px rgba(0,0,0,0.3)',
-      }}>
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-[#1a1a1a] border-t border-[#2a2a2a]"
+      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
+      <div className="flex items-center justify-around py-1.5">
         {tabs.map(tab => {
-          const isActive = location.pathname.startsWith(tab.path);
+          const active = pathname.startsWith(tab.path);
           return (
-            <button
-              key={tab.path}
-              onClick={() => navigate(tab.path)}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                gap: 2,
-                padding: '8px 16px',
-                borderRadius: 14,
-                border: 'none',
-                cursor: 'pointer',
-                backgroundColor: isActive ? '#1e3a3a' : 'transparent',
-              }}
-            >
-              <tab.icon style={{ width: 20, height: 20, color: isActive ? '#c9a84c' : '#9ca3b0' }} />
-              <span style={{ fontSize: 10, fontWeight: 500, color: isActive ? '#c9a84c' : '#9ca3b0' }}>
+            <button key={tab.path} onClick={() => navigate(tab.path)}
+              className="flex flex-col items-center gap-0.5 py-1 min-w-[64px] bg-transparent border-none cursor-pointer">
+              <tab.icon className="w-[22px] h-[22px]" style={{ color: active ? '#8b5cf6' : '#666' }} />
+              <span className="text-[10px] font-medium" style={{ color: active ? '#8b5cf6' : '#666' }}>
                 {tab.label}
               </span>
             </button>
           );
         })}
-      </nav>
+      </div>
     </div>
   );
 }

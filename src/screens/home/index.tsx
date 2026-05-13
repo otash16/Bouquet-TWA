@@ -1,23 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Flower2, MapPin } from 'lucide-react';
+import { Search, Flower2 } from 'lucide-react';
 import api from '@/services/api';
 
 interface Shop {
-  id: string;
-  slug: string;
-  logo: string | null;
-  coverImage: string | null;
-  name: string;
-  description: string | null;
-  flowerCount: number;
+  id: string; slug: string; logo: string | null; coverImage: string | null;
+  name: string; description: string | null; flowerCount: number;
 }
-
-interface Category {
-  id: string;
-  slug: string;
-  name: string;
-}
+interface Category { id: string; slug: string; name: string; }
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -31,137 +21,94 @@ export default function HomePage() {
     Promise.all([
       api.get('/client/shops?lang=uz').then(r => setShops(r.data.data)),
       api.get('/client/categories?lang=uz').then(r => setCategories(r.data.data)),
-    ])
-      .catch(console.error)
-      .finally(() => setLoading(false));
+    ]).catch(console.error).finally(() => setLoading(false));
   }, []);
 
-  const filteredShops = shops.filter(s =>
-    search ? s.name.toLowerCase().includes(search.toLowerCase()) : true
-  );
+  const filtered = shops.filter(s => search ? s.name.toLowerCase().includes(search.toLowerCase()) : true);
 
   return (
-    <div style={{ paddingBottom: 100 }}>
+    <div className="page-enter pb-20">
       {/* Header */}
-      <div style={{ padding: '24px 16px 16px', backgroundColor: '#1e3a3a' }}>
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <Flower2 style={{ width: 24, height: 24, color: '#c9a84c' }} />
-            <span style={{ fontSize: 20, fontWeight: 700, color: '#c9a84c' }}>Bouquet</span>
+      <div className="px-5 pt-5 pb-4">
+        <div className="flex items-center gap-2 mb-5">
+          <div className="w-9 h-9 rounded-xl bg-[#8b5cf6]/15 flex items-center justify-center">
+            <Flower2 className="w-5 h-5 text-[#8b5cf6]" />
           </div>
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: '#9ca3b0', marginBottom: 12 }}>
-          <MapPin style={{ width: 14, height: 14 }} />
-          <span style={{ fontSize: 13 }}>Toshkent</span>
+          <span className="text-xl font-bold">Bouquet</span>
         </div>
 
         {/* Search */}
-        <div style={{ position: 'relative' }}>
-          <Search style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, color: '#6b7280' }} />
+        <div className="relative">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-[18px] h-[18px] text-[#666]" />
           <input
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Qidirish..."
-            style={{
-              width: '100%',
-              paddingLeft: 40,
-              paddingRight: 16,
-              paddingTop: 10,
-              paddingBottom: 10,
-              borderRadius: 14,
-              fontSize: 14,
-              color: '#fff',
-              backgroundColor: '#2a3040',
-              border: 'none',
-              outline: 'none',
-            }}
+            placeholder="Gul yoki do'kon qidiring..."
+            className="w-full pl-11 pr-4 py-3 rounded-2xl text-[15px] bg-[#1a1a1a] border border-[#2a2a2a] text-white outline-none focus:border-[#8b5cf6] transition-colors"
+            style={{ WebkitAppearance: 'none' }}
           />
         </div>
       </div>
 
-      {/* Section title + Categories */}
-      <div style={{ padding: '16px 16px 0' }}>
-        <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 12 }}>Do'konlar</h2>
-
-        <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 12, WebkitOverflowScrolling: 'touch' }}>
+      {/* Categories */}
+      <div className="px-5 mb-4">
+        <div className="flex gap-2 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
           <button
             onClick={() => setActiveCategory(null)}
-            style={{
-              padding: '7px 16px',
-              borderRadius: 20,
-              fontSize: 12,
-              fontWeight: 500,
-              whiteSpace: 'nowrap',
-              border: 'none',
-              cursor: 'pointer',
-              backgroundColor: !activeCategory ? '#c9a84c' : '#2a3040',
-              color: !activeCategory ? '#000' : '#9ca3b0',
-            }}
-          >
-            Hammasi
-          </button>
+            className={`shrink-0 px-4 py-[7px] rounded-full text-[13px] font-medium border-none cursor-pointer transition-all ${
+              !activeCategory ? 'bg-[#8b5cf6] text-white' : 'bg-[#1a1a1a] text-[#a0a0a0]'
+            }`}
+          >Hammasi</button>
           {categories.map(cat => (
-            <button
-              key={cat.id}
+            <button key={cat.id}
               onClick={() => setActiveCategory(cat.id === activeCategory ? null : cat.id)}
-              style={{
-                padding: '7px 16px',
-                borderRadius: 20,
-                fontSize: 12,
-                fontWeight: 500,
-                whiteSpace: 'nowrap',
-                border: 'none',
-                cursor: 'pointer',
-                backgroundColor: activeCategory === cat.id ? '#c9a84c' : '#2a3040',
-                color: activeCategory === cat.id ? '#000' : '#9ca3b0',
-              }}
-            >
-              {cat.name}
-            </button>
+              className={`shrink-0 px-4 py-[7px] rounded-full text-[13px] font-medium border-none cursor-pointer transition-all ${
+                activeCategory === cat.id ? 'bg-[#8b5cf6] text-white' : 'bg-[#1a1a1a] text-[#a0a0a0]'
+              }`}
+            >{cat.name}</button>
           ))}
         </div>
       </div>
 
+      {/* Section title */}
+      <div className="px-5 mb-3">
+        <h2 className="text-[17px] font-semibold">
+          {activeCategory ? categories.find(c => c.id === activeCategory)?.name : "Do'konlar"}
+        </h2>
+      </div>
+
       {/* Shop list */}
-      <div style={{ padding: '8px 16px', display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div className="px-5 flex flex-col gap-4">
         {loading ? (
-          <div style={{ textAlign: 'center', padding: '48px 0', color: '#6b7280' }}>Yuklanmoqda...</div>
-        ) : filteredShops.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '48px 0' }}>
-            <Flower2 style={{ width: 48, height: 48, margin: '0 auto 12px', color: '#6b7280' }} />
-            <p style={{ color: '#6b7280' }}>Do'konlar topilmadi</p>
+          <div className="text-center py-16 text-[#666]">
+            <div className="w-6 h-6 border-2 border-[#8b5cf6] border-t-transparent rounded-full mx-auto mb-3" style={{ animation: 'spin 0.8s linear infinite' }} />
+            Yuklanmoqda...
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="text-center py-16">
+            <Flower2 className="w-12 h-12 mx-auto mb-3 text-[#333]" />
+            <p className="text-[#666] text-[15px]">Do'konlar topilmadi</p>
           </div>
         ) : (
-          filteredShops.map(shop => (
-            <div
-              key={shop.id}
-              onClick={() => navigate(`/shop/${shop.slug}`)}
-              style={{
-                borderRadius: 16,
-                overflow: 'hidden',
-                backgroundColor: '#2a3040',
-                cursor: 'pointer',
-              }}
-            >
-              <div style={{ height: 160, position: 'relative' }}>
+          filtered.map(shop => (
+            <div key={shop.id} onClick={() => navigate(`/shop/${shop.slug}`)}
+              className="rounded-2xl overflow-hidden bg-[#1a1a1a] cursor-pointer active:scale-[0.98] transition-transform">
+              <div className="h-[180px] relative">
                 {shop.coverImage || shop.logo ? (
-                  <img
-                    src={shop.coverImage || shop.logo || ''}
-                    alt={shop.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
+                  <img src={shop.coverImage || shop.logo || ''} alt="" className="w-full h-full object-cover" />
                 ) : (
-                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#232838' }}>
-                    <Flower2 style={{ width: 48, height: 48, color: '#6b7280' }} />
+                  <div className="w-full h-full flex items-center justify-center bg-[#222]">
+                    <Flower2 className="w-14 h-14 text-[#333]" />
                   </div>
                 )}
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-3 left-4 right-4">
+                  <h3 className="text-[16px] font-semibold text-white drop-shadow-lg">{shop.name}</h3>
+                </div>
               </div>
-              <div style={{ padding: 12 }}>
-                <h3 style={{ fontSize: 15, fontWeight: 600 }}>{shop.name}</h3>
-                <p style={{ fontSize: 12, color: '#9ca3b0', marginTop: 4 }}>
-                  {shop.flowerCount} ta gul · {shop.description || "Gul do'koni"}
-                </p>
+              <div className="px-4 py-3 flex items-center justify-between">
+                <span className="text-[13px] text-[#a0a0a0]">{shop.description || "Gul do'koni"}</span>
+                <span className="text-[12px] text-[#8b5cf6] font-medium">{shop.flowerCount} gul</span>
               </div>
             </div>
           ))
