@@ -26,19 +26,22 @@ export default function HomePage() {
   return (
     <div className="page-enter" style={{ paddingBottom: 90 }}>
       {/* Header */}
-      <div style={{ background: '#fff', padding: '16px 20px 18px', borderRadius: '0 0 20px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+      <div style={{ background: '#fff', padding: '16px 20px', borderRadius: '0 0 20px 20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 38, height: 38, borderRadius: 12, background: 'rgba(139,92,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Flower2 style={{ width: 20, height: 20, color: '#8b5cf6' }} />
           </div>
           <span style={{ fontSize: 20, fontWeight: 700, color: '#000' }}>Bouquet</span>
         </div>
+      </div>
 
+      {/* Search */}
+      <div style={{ padding: '14px 20px 0' }}>
         <div style={{ position: 'relative' }}>
           <Search style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', width: 18, height: 18, color: '#8E8E93' }} />
           <input value={search} onChange={e => setSearch(e.target.value)}
             placeholder="Gul yoki do'kon qidiring..."
-            style={{ width: '100%', paddingLeft: 40, paddingRight: 16, paddingTop: 10, paddingBottom: 10, borderRadius: 12, fontSize: 15, color: '#000', background: '#F2F2F7', border: 'none', outline: 'none' }}
+            style={{ width: '100%', paddingLeft: 40, paddingRight: 16, paddingTop: 10, paddingBottom: 10, borderRadius: 12, fontSize: 15, color: '#000', background: '#fff', border: '1px solid #E5E5EA', outline: 'none' }}
           />
         </div>
       </div>
