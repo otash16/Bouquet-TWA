@@ -18,7 +18,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-  background: #191d2b;
+  background: #000000;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -31,6 +31,7 @@ input, select, textarea { font-size: 16px !important; }
   max-width: 480px;
   margin: 0 auto;
   width: 100%;
+  background: #191d2b;
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
 }
 
