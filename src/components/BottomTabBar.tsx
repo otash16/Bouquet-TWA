@@ -13,7 +13,7 @@ export default function BottomTabBar() {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-[#1a1a1a] border-t border-[#2a2a2a]"
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-[#212636] border-t border-[#333a4a]"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
       <div className="flex items-center justify-around py-1.5">
         {tabs.map(tab => {

@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
   const menuBtn = {
     display: 'flex', alignItems: 'center', gap: 14, width: '100%',
-    padding: '15px 16px', background: '#1a1a1a', border: 'none',
+    padding: '15px 16px', background: '#212636', border: 'none',
     color: '#f5f5f5', fontSize: 15, cursor: 'pointer', textAlign: 'left' as const,
   };
 
@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
       <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
         {/* User card */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 18, borderRadius: 18, background: '#1a1a1a' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 18, borderRadius: 18, background: '#212636' }}>
           <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <User style={{ width: 28, height: 28, color: '#8b5cf6' }} />
           </div>

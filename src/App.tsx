@@ -16,7 +16,7 @@ export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [ready, setReady] = useState(false);
-  const [safeAreaColor, setSafeAreaColor] = useState('#0f0f0f');
+  const [safeAreaColor, setSafeAreaColor] = useState('#191d2b');
 
   // Telegram auth
   useEffect(() => {

@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 :root {
-  --bg: #0f0f0f;
-  --surface: #1a1a1a;
-  --card: #222222;
+  --bg: #191d2b;
+  --surface: #212636;
+  --card: #272d3d;
   --card-hover: #2a2a2a;
   --accent: #8b5cf6;
   --accent-soft: rgba(139, 92, 246, 0.12);
@@ -18,7 +18,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-  background: var(--bg);
+  background: #191d2b;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -37,7 +37,7 @@ input, select, textarea { font-size: 16px !important; }
 .safe-area-bg {
   position: fixed; top: 0; left: 0; right: 0;
   height: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
-  background: var(--bg); z-index: 999; pointer-events: none;
+  background: #191d2b; z-index: 999; pointer-events: none;
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

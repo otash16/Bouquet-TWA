@@ -29,7 +29,7 @@ export default function HomePage() {
   return (
     <div className="page-enter" style={{ paddingBottom: 80 }}>
       {/* Header */}
-      <div style={{ padding: '20px 20px 20px', background: '#1a1a1a', borderRadius: '0 0 28px 28px' }}>
+      <div style={{ padding: '20px 20px 20px', background: '#212636', borderRadius: '0 0 28px 28px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 40, height: 40, borderRadius: 12, background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Flower2 style={{ width: 22, height: 22, color: '#8b5cf6' }} />
@@ -48,8 +48,8 @@ export default function HomePage() {
             placeholder="Gul yoki do'kon qidiring..."
             style={{
               width: '100%', paddingLeft: 42, paddingRight: 16, paddingTop: 12, paddingBottom: 12,
-              borderRadius: 14, fontSize: 15, color: '#f5f5f5', background: '#1a1a1a',
-              border: '1px solid #2a2a2a', outline: 'none', WebkitAppearance: 'none',
+              borderRadius: 14, fontSize: 15, color: '#f5f5f5', background: '#272d3d',
+              border: '1px solid #333a4a', outline: 'none', WebkitAppearance: 'none',
             }}
           />
         </div>
@@ -63,7 +63,7 @@ export default function HomePage() {
             style={{
               flexShrink: 0, padding: '8px 18px', borderRadius: 100, fontSize: 13, fontWeight: 600,
               border: 'none', cursor: 'pointer',
-              background: !activeCategory ? '#8b5cf6' : '#1a1a1a',
+              background: !activeCategory ? '#8b5cf6' : '#272d3d',
               color: !activeCategory ? '#fff' : '#888',
             }}
           >Hammasi</button>
@@ -73,7 +73,7 @@ export default function HomePage() {
               style={{
                 flexShrink: 0, padding: '8px 18px', borderRadius: 100, fontSize: 13, fontWeight: 600,
                 border: 'none', cursor: 'pointer',
-                background: activeCategory === cat.id ? '#8b5cf6' : '#1a1a1a',
+                background: activeCategory === cat.id ? '#8b5cf6' : '#272d3d',
                 color: activeCategory === cat.id ? '#fff' : '#888',
               }}
             >{cat.name}</button>
@@ -101,12 +101,12 @@ export default function HomePage() {
         ) : (
           filtered.map(shop => (
             <div key={shop.id} onClick={() => navigate(`/shop/${shop.slug}`)}
-              style={{ borderRadius: 20, overflow: 'hidden', background: '#1a1a1a', cursor: 'pointer' }}>
+              style={{ borderRadius: 20, overflow: 'hidden', background: '#212636', cursor: 'pointer' }}>
               <div style={{ height: 180, position: 'relative' }}>
                 {shop.coverImage || shop.logo ? (
                   <img src={shop.coverImage || shop.logo || ''} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : (
-                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#222' }}>
+                  <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#272d3d' }}>
                     <Flower2 style={{ width: 56, height: 56, color: '#2a2a2a' }} />
                   </div>
                 )}
