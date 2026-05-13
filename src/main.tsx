@@ -1,30 +1,22 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
 import './index.css';
+import App from './App';
 
-// Telegram WebApp SDK init
 const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
   tg.expand();
-  // @ts-expect-error — requestFullscreen mavjud bo'lishi mumkin
-  if (tg.requestFullscreen) tg.requestFullscreen();
-  // @ts-expect-error — disableVerticalSwipes mavjud bo'lishi mumkin
-  if (tg.disableVerticalSwipes) tg.disableVerticalSwipes();
-
-  // Telegram header rangini sozlash
-  // @ts-expect-error — setHeaderColor mavjud
-  if (tg.setHeaderColor) tg.setHeaderColor('#191d2b');
-  // @ts-expect-error — setBackgroundColor mavjud
-  if (tg.setBackgroundColor) tg.setBackgroundColor('#191d2b');
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (isMobile) {
+    // @ts-expect-error
+    tg.disableVerticalSwipes?.();
+    // @ts-expect-error
+    tg.requestFullscreen?.();
+  }
+  // @ts-expect-error
+  if (tg.setHeaderColor) tg.setHeaderColor('#ffffff');
+  // @ts-expect-error
+  if (tg.setBackgroundColor) tg.setBackgroundColor('#F2F2F7');
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </StrictMode>
-);
+createRoot(document.getElementById('root')!).render(<App />);

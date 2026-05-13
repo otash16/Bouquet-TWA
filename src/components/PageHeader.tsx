@@ -1,11 +1,9 @@
-interface Props {
-  title: string;
-}
+interface Props { title: string; }
 
 export default function PageHeader({ title }: Props) {
   return (
-    <div className="px-5 pt-4 pb-3">
-      <h1 className="text-[22px] font-bold tracking-tight">{title}</h1>
+    <div style={{ padding: '16px 20px 14px', background: '#fff' }}>
+      <h1 style={{ fontSize: 22, fontWeight: 700, color: '#000' }}>{title}</h1>
     </div>
   );
 }

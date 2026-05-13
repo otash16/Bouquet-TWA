@@ -1,47 +1,45 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-:root {
-  --bg: #191d2b;
-  --surface: #212636;
-  --card: #272d3d;
-  --card-hover: #2a2a2a;
-  --accent: #8b5cf6;
-  --accent-soft: rgba(139, 92, 246, 0.12);
-  --text: #f5f5f5;
-  --text-secondary: #a0a0a0;
-  --text-muted: #666;
-  --border: #2a2a2a;
-  --danger: #ef4444;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
-  background: #191d2b;
-  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  background: #F2F2F7;
+  color: #000;
 }
 
 input, select, textarea { font-size: 16px !important; }
 
 #root {
-  min-height: 100dvh;
+  width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  width: 100%;
-  background: #191d2b;
+  min-height: 100dvh;
+  background: #F2F2F7;
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
 }
 
 .safe-area-bg {
-  position: fixed; top: 0; left: 0; right: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   height: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
-  background: #191d2b; z-index: 999; pointer-events: none;
+  background: #fff;
+  z-index: 999;
+  pointer-events: none;
+  transition: background-color 0.3s;
 }
 
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes spin { to { transform: rotate(360deg); } }
-.page-enter { animation: fadeIn 0.3s ease-out; }
+.page-enter { animation: fadeIn 0.25s ease-out; }
 ::-webkit-scrollbar { display: none; }

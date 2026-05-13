@@ -4,14 +4,8 @@ import { ArrowLeft, Flower2, Phone } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import api from '@/services/api';
 
-interface ShopDetail {
-  id: string; slug: string; name: string; description: string | null;
-  logo: string | null; coverImage: string | null; phone: string | null; flowerCount: number;
-}
-interface FlowerItem {
-  id: string; name: string; price: number; discountPrice: number | null;
-  images: string[]; categoryName: string | null;
-}
+interface ShopDetail { id: string; slug: string; name: string; description: string | null; logo: string | null; coverImage: string | null; phone: string | null; flowerCount: number; }
+interface FlowerItem { id: string; name: string; price: number; discountPrice: number | null; images: string[]; categoryName: string | null; }
 
 export default function ShopPage() {
   const { slug } = useParams();
@@ -27,72 +21,61 @@ export default function ShopPage() {
       .catch(console.error).finally(() => setLoading(false));
   }, [slug]);
 
-  if (loading) return <div className="flex items-center justify-center min-h-screen"><div className="w-6 h-6 border-2 border-[#8b5cf6] border-t-transparent rounded-full" style={{ animation: 'spin 0.8s linear infinite' }} /></div>;
-  if (!shop) return <div className="text-center py-20 text-[#666]">Do'kon topilmadi</div>;
+  if (loading) return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}><div style={{ width: 24, height: 24, border: '2px solid #8b5cf6', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /></div>;
+  if (!shop) return <div style={{ textAlign: 'center', padding: '80px 20px', color: '#8E8E93' }}>Do'kon topilmadi</div>;
 
   return (
-    <div className="page-enter pb-6">
-      {/* Cover */}
-      <div className="relative h-56">
+    <div className="page-enter" style={{ paddingBottom: 20 }}>
+      <div style={{ height: 200, position: 'relative' }}>
         {shop.coverImage || shop.logo ? (
-          <img src={shop.coverImage || shop.logo || ''} alt="" className="w-full h-full object-cover" />
+          <img src={shop.coverImage || shop.logo || ''} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-[#1a1a1a]">
-            <Flower2 className="w-16 h-16 text-[#333]" />
+          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#E5E5EA' }}>
+            <Flower2 style={{ width: 56, height: 56, color: '#C7C7CC' }} />
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] via-transparent to-transparent" />
         <button onClick={() => navigate(-1)}
-          className="absolute top-4 left-4 w-9 h-9 rounded-full flex items-center justify-center bg-black/40 backdrop-blur-md border-none cursor-pointer">
-          <ArrowLeft className="w-5 h-5 text-white" />
+          style={{ position: 'absolute', top: 12, left: 12, width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(10px)', border: 'none', cursor: 'pointer' }}>
+          <ArrowLeft style={{ width: 20, height: 20, color: '#fff' }} />
         </button>
       </div>
 
-      {/* Shop info */}
-      <div className="px-5 -mt-8 relative z-10 mb-6">
-        <h1 className="text-2xl font-bold mb-1">{shop.name}</h1>
-        <p className="text-[14px] text-[#a0a0a0]">{shop.description || "Gul do'koni"}</p>
+      <div style={{ padding: '16px 20px', background: '#fff', borderRadius: '0 0 20px 20px', marginBottom: 16 }}>
+        <h1 style={{ fontSize: 22, fontWeight: 700 }}>{shop.name}</h1>
+        <p style={{ fontSize: 14, color: '#8E8E93', marginTop: 4 }}>{shop.description || "Gul do'koni"} · {shop.flowerCount} ta gul</p>
         {shop.phone && (
-          <a href={`tel:${shop.phone}`} className="inline-flex items-center gap-1.5 mt-2 text-[13px] text-[#8b5cf6] no-underline">
-            <Phone className="w-3.5 h-3.5" /> {shop.phone}
+          <a href={`tel:${shop.phone}`} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 8, fontSize: 14, color: '#8b5cf6', textDecoration: 'none' }}>
+            <Phone style={{ width: 14, height: 14 }} /> {shop.phone}
           </a>
         )}
       </div>
 
-      {/* Flowers */}
-      <div className="px-5">
-        <h2 className="text-[17px] font-semibold mb-3">Gullar <span className="text-[#666] font-normal text-[14px]">({flowers.length})</span></h2>
+      <div style={{ padding: '0 20px' }}>
+        <h2 style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>Gullar</h2>
         {flowers.length === 0 ? (
-          <div className="text-center py-12">
-            <Flower2 className="w-10 h-10 mx-auto mb-2 text-[#333]" />
-            <p className="text-[14px] text-[#666]">Hali gullar qo'shilmagan</p>
+          <div style={{ textAlign: 'center', padding: '40px 0', color: '#8E8E93' }}>
+            <Flower2 style={{ width: 40, height: 40, margin: '0 auto 8px', color: '#C7C7CC' }} />
+            <p style={{ fontSize: 14 }}>Hali gullar qo'shilmagan</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-3">
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {flowers.map(flower => (
               <div key={flower.id} onClick={() => navigate(`/flower/${flower.id}`)}
-                className="rounded-2xl overflow-hidden bg-[#1a1a1a] cursor-pointer active:scale-[0.97] transition-transform">
-                <div className="aspect-square relative">
+                style={{ borderRadius: 14, overflow: 'hidden', background: '#fff', border: '1px solid #E5E5EA', cursor: 'pointer' }}>
+                <div style={{ aspectRatio: '1', position: 'relative' }}>
                   {flower.images[0] ? (
-                    <img src={flower.images[0]} alt="" className="w-full h-full object-cover" />
+                    <img src={flower.images[0]} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-[#222]">
-                      <Flower2 className="w-8 h-8 text-[#333]" />
+                    <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#F2F2F7' }}>
+                      <Flower2 style={{ width: 32, height: 32, color: '#C7C7CC' }} />
                     </div>
                   )}
-                  {flower.categoryName && (
-                    <span className="absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded-full bg-black/50 backdrop-blur-sm text-white">
-                      {flower.categoryName}
-                    </span>
-                  )}
                 </div>
-                <div className="p-3">
-                  <h3 className="text-[13px] font-medium truncate mb-1">{flower.name}</h3>
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="text-[14px] font-bold text-[#8b5cf6]">{formatPrice(flower.price)}</span>
-                    {flower.discountPrice && (
-                      <span className="text-[11px] text-[#666] line-through">{formatPrice(flower.discountPrice)}</span>
-                    )}
+                <div style={{ padding: '10px 12px' }}>
+                  <h3 style={{ fontSize: 13, fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{flower.name}</h3>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 4 }}>
+                    <span style={{ fontSize: 14, fontWeight: 700, color: '#8b5cf6' }}>{formatPrice(flower.price)}</span>
+                    {flower.discountPrice && <span style={{ fontSize: 11, color: '#8E8E93', textDecoration: 'line-through' }}>{formatPrice(flower.discountPrice)}</span>}
                   </div>
                 </div>
               </div>

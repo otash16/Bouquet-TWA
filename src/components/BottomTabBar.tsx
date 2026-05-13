@@ -13,18 +13,16 @@ export default function BottomTabBar() {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] z-50 bg-[#212636] border-t border-[#333a4a]"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
-      <div className="flex items-center justify-around py-1.5">
+    <div style={{ position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '100%', maxWidth: 480, zIndex: 50, background: '#fff', borderTop: '1px solid #E5E5EA', paddingBottom: 'env(safe-area-inset-bottom, 0)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', paddingTop: 8, paddingBottom: 6 }}>
         {tabs.map(tab => {
           const active = pathname.startsWith(tab.path);
+          const color = active ? '#8b5cf6' : '#8E8E93';
           return (
             <button key={tab.path} onClick={() => navigate(tab.path)}
-              className="flex flex-col items-center gap-0.5 py-1 min-w-[64px] bg-transparent border-none cursor-pointer">
-              <tab.icon className="w-[22px] h-[22px]" style={{ color: active ? '#8b5cf6' : '#666' }} />
-              <span className="text-[10px] font-medium" style={{ color: active ? '#8b5cf6' : '#666' }}>
-                {tab.label}
-              </span>
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, padding: '2px 0', border: 'none', background: 'none', cursor: 'pointer', minWidth: 64 }}>
+              <tab.icon style={{ width: 22, height: 22, color }} />
+              <span style={{ fontSize: 10, fontWeight: 500, color }}>{tab.label}</span>
             </button>
           );
         })}
