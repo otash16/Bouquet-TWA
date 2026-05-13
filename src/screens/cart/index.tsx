@@ -5,16 +5,16 @@ import PageHeader from '@/components/PageHeader';
 export default function CartPage() {
   const navigate = useNavigate();
   return (
-    <div className="page-enter pb-20">
+    <div className="page-enter" style={{ paddingBottom: 80 }}>
       <PageHeader title="Savatcha" />
-      <div className="flex flex-col items-center justify-center py-24 px-6 text-center">
-        <div className="w-20 h-20 rounded-3xl bg-[#1a1a1a] flex items-center justify-center mb-5">
-          <ShoppingCart className="w-9 h-9 text-[#444]" />
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px', textAlign: 'center' }}>
+        <div style={{ width: 80, height: 80, borderRadius: 24, background: '#1a1a1a', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
+          <ShoppingCart style={{ width: 36, height: 36, color: '#444' }} />
         </div>
-        <h2 className="text-lg font-semibold mb-1">Savatcha bo'sh</h2>
-        <p className="text-[14px] text-[#a0a0a0] mb-6">Gul qo'shish uchun do'konlarni ko'ring</p>
+        <h2 style={{ fontSize: 20, fontWeight: 700, marginBottom: 6 }}>Savatcha bo'sh</h2>
+        <p style={{ fontSize: 14, color: '#888', marginBottom: 28, lineHeight: 1.5 }}>Gul qo'shish uchun do'konlarni ko'ring</p>
         <button onClick={() => navigate('/home')}
-          className="px-6 py-3 rounded-xl text-[15px] font-semibold bg-[#8b5cf6] text-white border-none cursor-pointer active:opacity-85 transition-opacity">
+          style={{ padding: '14px 32px', borderRadius: 14, fontSize: 15, fontWeight: 600, background: '#8b5cf6', color: '#fff', border: 'none', cursor: 'pointer' }}>
           Bosh sahifaga o'tish
         </button>
       </div>

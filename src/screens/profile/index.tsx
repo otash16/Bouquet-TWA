@@ -22,41 +22,46 @@ export default function ProfilePage() {
     { icon: Settings, label: 'Sozlamalar' },
   ];
 
+  const menuBtn = {
+    display: 'flex', alignItems: 'center', gap: 14, width: '100%',
+    padding: '15px 16px', background: '#1a1a1a', border: 'none',
+    color: '#f5f5f5', fontSize: 15, cursor: 'pointer', textAlign: 'left' as const,
+  };
+
   return (
-    <div className="page-enter pb-20">
+    <div className="page-enter" style={{ paddingBottom: 80 }}>
       <PageHeader title="Profil" />
-      <div className="px-5 space-y-4">
+
+      <div style={{ padding: '0 20px', display: 'flex', flexDirection: 'column', gap: 16 }}>
         {/* User card */}
-        <div className="flex items-center gap-4 p-4 rounded-2xl bg-[#1a1a1a]">
-          <div className="w-14 h-14 rounded-full bg-[#8b5cf6]/15 flex items-center justify-center shrink-0">
-            <User className="w-7 h-7 text-[#8b5cf6]" />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 18, borderRadius: 18, background: '#1a1a1a' }}>
+          <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(139,92,246,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <User style={{ width: 28, height: 28, color: '#8b5cf6' }} />
           </div>
           <div>
-            <p className="text-[16px] font-semibold">
+            <p style={{ fontSize: 17, fontWeight: 600 }}>
               {user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() || 'Foydalanuvchi' : '...'}
             </p>
-            {user?.username && <p className="text-[13px] text-[#a0a0a0] mt-0.5">@{user.username}</p>}
+            {user?.username && <p style={{ fontSize: 14, color: '#888', marginTop: 2 }}>@{user.username}</p>}
           </div>
         </div>
 
         {/* Menu */}
-        <div className="rounded-2xl overflow-hidden">
+        <div style={{ borderRadius: 18, overflow: 'hidden' }}>
           {menuItems.map((item, i) => (
-            <button key={i}
-              className="flex items-center gap-3.5 w-full px-4 py-[14px] bg-[#1a1a1a] border-none text-white text-[15px] cursor-pointer text-left"
-              style={{ borderTop: i > 0 ? '1px solid #222' : 'none' }}>
-              <item.icon className="w-5 h-5 text-[#888] shrink-0" />
-              <span className="flex-1">{item.label}</span>
-              <ChevronRight className="w-4 h-4 text-[#444]" />
+            <button key={i} style={{ ...menuBtn, borderTop: i > 0 ? '1px solid #252525' : 'none' }}>
+              <item.icon style={{ width: 20, height: 20, color: '#777', flexShrink: 0 }} />
+              <span style={{ flex: 1 }}>{item.label}</span>
+              <ChevronRight style={{ width: 16, height: 16, color: '#444' }} />
             </button>
           ))}
         </div>
 
         {/* Logout */}
         <button onClick={() => window.Telegram?.WebApp?.close()}
-          className="flex items-center gap-3.5 w-full px-4 py-[14px] rounded-2xl bg-[#1a1a1a] border-none cursor-pointer text-left">
-          <LogOut className="w-5 h-5 text-[#ef4444] shrink-0" />
-          <span className="text-[15px] text-[#ef4444]">Chiqish</span>
+          style={{ ...menuBtn, borderRadius: 18, gap: 14 }}>
+          <LogOut style={{ width: 20, height: 20, color: '#ef4444', flexShrink: 0 }} />
+          <span style={{ fontSize: 15, color: '#ef4444' }}>Chiqish</span>
         </button>
       </div>
     </div>
