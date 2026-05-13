@@ -26,12 +26,12 @@ export default function HomePage() {
   return (
     <div className="page-enter" style={{ paddingBottom: 90 }}>
       {/* Header */}
-      <div style={{ background: '#fff', padding: '16px 20px', borderRadius: '0 0 20px 20px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 38, height: 38, borderRadius: 12, background: 'rgba(139,92,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Flower2 style={{ width: 20, height: 20, color: '#8b5cf6' }} />
+      <div style={{ background: '#fff', padding: '24px 20px 22px', borderRadius: '0 0 20px 20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ width: 44, height: 44, borderRadius: 14, background: 'rgba(139,92,246,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Flower2 style={{ width: 24, height: 24, color: '#8b5cf6' }} />
           </div>
-          <span style={{ fontSize: 20, fontWeight: 700, color: '#000' }}>Bouquet</span>
+          <span style={{ fontSize: 24, fontWeight: 700, color: '#000' }}>Bouquet</span>
         </div>
       </div>
 
