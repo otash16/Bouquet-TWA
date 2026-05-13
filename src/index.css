@@ -39,6 +39,9 @@ input, select, textarea {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
   padding-top: var(--tg-safe-area-inset-top, 0px);
   padding-top: calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px));
 }

@@ -13,7 +13,7 @@ export default function BottomTabBar() {
   const location = useLocation();
 
   return (
-    <div style={{ position: 'fixed', bottom: 16, left: 16, right: 16, zIndex: 50 }}>
+    <div style={{ position: 'fixed', bottom: 16, left: '50%', transform: 'translateX(-50%)', width: 'calc(100% - 32px)', maxWidth: 448, zIndex: 50 }}>
       <nav style={{
         display: 'flex',
         alignItems: 'center',
