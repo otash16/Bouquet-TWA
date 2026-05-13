@@ -5,9 +5,9 @@ import PageHeader from '@/components/PageHeader';
 export default function CartPage() {
   const navigate = useNavigate();
   return (
-    <div className="page-enter" style={{ paddingBottom: 90 }}>
+    <div className="page-enter" style={{ paddingBottom: 90, minHeight: '100dvh', display: 'flex', flexDirection: 'column' }}>
       <PageHeader title="Savatcha" />
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 24px', textAlign: 'center' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '0 24px', textAlign: 'center' }}>
         <div style={{ width: 80, height: 80, borderRadius: 24, background: '#F2F2F7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 20 }}>
           <ShoppingCart style={{ width: 36, height: 36, color: '#C7C7CC' }} />
         </div>
